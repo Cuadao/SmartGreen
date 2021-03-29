@@ -1,9 +1,12 @@
-//
+//require express to enable routing
 const express = require('express')
 const router = express.Router()
 
 /*MODEL for CRUD*/
 const Project = require('../models/project')
+//categories
+const Category = require('../models/category')
+
 
 /* Get /projects */
 router.get('/',  (req, res, next) => {
@@ -24,7 +27,18 @@ router.get('/',  (req, res, next) => {
 
 /* GET /projects/add */
 router.get('/add', (req, res, next) => {
-    res.render('projects/add', { title: 'Project Details'})
+   // course model to dropdwon
+    Category.find((err, categories) => {
+        if (err){
+            console.log(err)
+        }
+        else{
+            res.render('projects/add',{
+                title: 'Project Details',
+                categories: categories
+            })
+        }
+    }).sort({ catName: 1 })
 })
 
 /*POST /projects/add */
@@ -34,7 +48,8 @@ router.post('/add', (req, res, next) => {
         ProjDesc: req.body.ProjDesc,
         projDate: req.body.projDate,
         //projStatus: req.body.projStatus,
-        projCreator: req.body.projCreator
+        projCreator: req.body.projCreator,
+        projCategory: req.body.projCategory,
     }, (err, newProject) => {
         if (err){
             console.log(err)

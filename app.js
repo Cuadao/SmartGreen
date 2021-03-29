@@ -6,7 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var projectsRouter = require('./routes/projects'); /*new reference*/
+var projectsRouter = require('./routes/projects'); /*projects reference*/
+var categoriesRouter = require('./routes/categories'); /*categories reference*/
 
 var app = express();
 
@@ -22,10 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/projects', projectsRouter);
+app.use('/projects', projectsRouter); /*projects*/
+app.use('/categories', categoriesRouter); /*categories*/
 
 //mongodb connection
-
 const mongoose = require('mongoose')
 
 // vars into config

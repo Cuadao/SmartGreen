@@ -21,5 +21,13 @@
         <label for="projCreator" class="col-2">Creator:</label>
         <input name="projCreator" id="projCreator" required>
     </fieldset>
+    <fieldset>
+        <label for="projCategory" class="col-2">Category:</label>
+        <select name="projCategory" id="projCategory">
+            {{#each categories}}
+                <option>{{this.catName}}</option>
+            {{/each}}
+        </select>
+    </fieldset>
     <button class="offset-3 btn btn-primary">Save</button>
 </form>

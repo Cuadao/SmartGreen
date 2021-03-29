@@ -1,0 +1,14 @@
+<h1>{{title}}</h1>
+<a href="/categories/add">Add New Category</a>
+<table className="table table-striped table-hover">
+    <thead>
+    <th>Category Name</th>
+    <th>Description</th>
+   {{#each categories}}
+    <tr>
+        <td>{{this.catName}}</td>
+        <td>{{this.catDesc}}</td>
+    </tr>
+    {{/each}}
+    </thead>
+    </table>

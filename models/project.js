@@ -1,7 +1,7 @@
 //references to mongoose
 const mongoose = require('mongoose')
 
-var projectSquema = new mongoose.Schema({
+const projectSquema = new mongoose.Schema({
     projectName: {
         type: String,
         required: true
@@ -17,6 +17,9 @@ var projectSquema = new mongoose.Schema({
         default: 'To-Do'
     },
     projCreator: {
+        type: String
+    },
+    projCategory: {
         type: String
     }
 })
