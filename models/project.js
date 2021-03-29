@@ -14,7 +14,7 @@ const projectSquema = new mongoose.Schema({
     },
     projStatus: {
         type: String,
-        default: 'To-Do'
+        default: 'Created'
     },
     projCreator: {
         type: String

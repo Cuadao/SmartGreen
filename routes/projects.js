@@ -61,5 +61,18 @@ router.post('/add', (req, res, next) => {
     })
 })
 
+/*Get /projects/delete */
+router.get('/delete/:_id', (req, res, next) => {
+    //project model to delete
+    Project.remove({ _id: req.params._id }, (err) => {
+        if (err){
+            console.log(err)
+        }
+        else{
+            res.redirect('/projects')
+        }
+    })
+})
+
 //make public
 module.exports = router;
