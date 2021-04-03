@@ -5,6 +5,9 @@ const router = express.Router()
 /*MODEL for CRUD CREATE VARIABLE */
 const Category = require('../models/category')
 
+//passport to show when user is login
+const passport = require('passport')
+
 /* Get /categories
 router.get('/',  (req, res, next) => {
     //Show all projects
@@ -24,7 +27,10 @@ router.get('/',  (req, res, next) => {
 
 /* GET /categories/add */
 router.get('/add', (req, res, next) => {
-    res.render('categories/add', { title: 'Add a Category'})
+    res.render('categories/add', {
+        title: 'Add a Category',
+        user: req.user
+    })
 })
 
 /*POST /categories/add */

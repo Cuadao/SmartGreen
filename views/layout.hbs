@@ -31,12 +31,24 @@
                       </li>
                   </ul>
                   <ul class="navbar-nav ml-auto">
-                      <li class="nav-item">
-                          <a class="nav-link" href="/register">Register</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/login">Login</a>
-                      </li>
+                      {{#if user}}
+                          <!--authenticated-->
+                          <li class="nav-item">
+                              <a class="nav-item" href="#">{{user.username}}</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-item" href="/logout">Logout</a>
+                          </li>
+                      {{else}}
+                          <!--no authenticated-->
+                          <li class="nav-item">
+                              <a class="nav-link" href="/register">Register</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/login">Login</a>
+                          </li>
+                      {{/if}}
+
                   </ul>
               </div>
           </div>

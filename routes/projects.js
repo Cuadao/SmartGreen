@@ -7,6 +7,8 @@ const Project = require('../models/project')
 //categories
 const Category = require('../models/category')
 
+//passport to show when user is login
+const passport = require('passport')
 
 /* Get /projects */
 router.get('/',  (req, res, next) => {
@@ -17,9 +19,11 @@ router.get('/',  (req, res, next) => {
         }
         else{
             //load index view pass title and data from projects
+            //call user when login
             res.render('projects/index', {
                 title: 'Project Details',
-                projects: projects
+                projects: projects,
+                user: req.user
             })
         }
     })
@@ -35,7 +39,8 @@ router.get('/add', (req, res, next) => {
         else{
             res.render('projects/add',{
                 title: 'Project Details',
-                categories: categories
+                categories: categories,
+                user: req.user
             })
         }
     }).sort({ catName: 1 })
@@ -90,7 +95,8 @@ router.get('/edit/:_id', (req, res, next) => {
                        res.render('projects/edit', {
                         title: 'Project Details',
                         project: project,
-                        categories: categories
+                        categories: categories,
+                           user: req.user
                     })
                 }
             }).sort({ catName: 1})
