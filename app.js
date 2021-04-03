@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects'); /*projects reference*/
 var categoriesRouter = require('./routes/categories'); /*categories reference*/
 
+//PASSPORT CONFIG
+const passport = require('passport')
+const session = require('express-session')
+
 var app = express();
 
 // view engine setup
@@ -20,6 +24,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//configure SESSION before map controllers
+app.use(session({
+    secret: '1t1sGr33n44p',
+    resave: false,
+    saveUninitialized: false
+}))
+
+//configure PASSPORT
+app.use(passport.initialize())
+app.use(passport.session())
+
+//Link passport to Model
+const User = require('./models/user')
+passport.use(User.createStrategy())
+
+//SERIALIZE AND DESERIALIZE
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

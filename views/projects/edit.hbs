@@ -11,7 +11,7 @@
     </fieldset>
     <fieldset>
         <label for="projDate" class="col-2">Date:</label>
-        <input name="projDate" id="projDate" required type="date" value="{{project.projDate}}">
+        <input name="projDate" id="projDate" required type="date" value="{{shortDate project.projDate}}">
     </fieldset>
     <!--<fieldset> STATUS BY DEFAULT SCHEMA
         <label for="projStatus" class="col-2">Status:</label>
@@ -32,12 +32,12 @@
     <fieldset>
         <label for="projStatus" class="col-2">Status:</label>
         <select name="projStatus" id="projStatus">
-        {{createOption 'Created' ../project.projStatus}}
-        <!--{{createOption 'Revision' ../project.projStatus}}
-        {{createOption 'Looking-Sponsor' ../project.projStatus}}
-        {{createOption 'Working-On' ../project.projStatus}}-->
-        {{createOption 'Finished' ../project.projStatus}}
-        {{createOption 'Canceled' ../project.projStatus}}
+        {{createOption 'Created' project.projStatus}}
+        {{createOption 'Revision' project.projStatus}}
+        {{createOption 'Looking-Sponsor' project.projStatus}}
+        {{createOption 'Working-On' project.projStatus}}
+        {{createOption 'Finished' project.projStatus}}
+        {{createOption 'Canceled' project.projStatus}}
         </select>
     </fieldset>
     <button class="offset-3 btn btn-primary">Save</button>
