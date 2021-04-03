@@ -1,4 +1,4 @@
 // Pop up Confirmation
-function areyouSure(){
+function areYouSure(){
     return confirm('Are you sure to delete this register?')
 }

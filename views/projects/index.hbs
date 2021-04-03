@@ -1,5 +1,8 @@
 <h1>{{title}}</h1>
-<a href="/projects/add">Add new project</a>
+{{#if user}}
+    <a href="/projects/add">Add new project</a>
+{{/if}}
+
 <table class="table table-striped table-hover">
     <thead>
     <th>Project Name</th>
@@ -8,25 +11,33 @@
     <th>Status</th>
     <th>Creator</th>
     <th>Category</th>
+    {{#if user}}
     <th>Delete</th>
+    {{/if}}
     {{#each projects}}
         <tr>
             <td>
+                {{#if user}}
                 <a href="/projects/edit/{{this._id}}">
                 {{this.projectName}}
                 </a>
+                {{else}}
+                    {{this.projectName}}
+                {{/if}}
             </td>
             <td>{{this.ProjDesc}}</td>
             <td>{{shortDate this.projDate}}</td>
             <td>{{this.projStatus}}</td>
             <td>{{this.projCreator}}</td>
             <td>{{this.projCategory}}</td>
+            {{#if ../user}}
             <td>
                 <a href="/projects/delete/{{this._id}}" class="btn btn-danger"
-                    onclick="return areyouSure();">
+                    onclick="return areYouSure();">
                     Delete
                 </a>
             </td>
+            {{/if}}
         </tr>
     {{/each}}
     </thead>
