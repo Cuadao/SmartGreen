@@ -10,6 +10,17 @@ const Category = require('../models/category')
 //passport to show when user is login
 const passport = require('passport')
 
+//security function
+function isLoggedIn(req,res,next){
+    if (req.isAuthenticated()){
+        return next()
+    }
+    else {
+        res.redirect('/login') //go login to anonymus
+    }
+}
+
+
 /* Get /projects */
 router.get('/',  (req, res, next) => {
     //Show all projects
@@ -30,7 +41,7 @@ router.get('/',  (req, res, next) => {
 })
 
 /* GET /projects/add */
-router.get('/add', (req, res, next) => {
+router.get('/add', isLoggedIn, (req, res, next) => {
    // course model to dropdwon
     Category.find((err, categories) => {
         if (err){
@@ -47,7 +58,7 @@ router.get('/add', (req, res, next) => {
 })
 
 /*POST /projects/add */
-router.post('/add', (req, res, next) => {
+router.post('/add', isLoggedIn, (req, res, next) => {
     Project.create({
         projectName: req.body.projectName,
         ProjDesc: req.body.ProjDesc,
@@ -67,7 +78,7 @@ router.post('/add', (req, res, next) => {
 })
 
 /*Get /projects/delete */
-router.get('/delete/:_id', (req, res, next) => {
+router.get('/delete/:_id', isLoggedIn,(req, res, next) => {
     //project model to delete
     Project.remove({ _id: req.params._id }, (err) => {
         if (err){
@@ -80,7 +91,7 @@ router.get('/delete/:_id', (req, res, next) => {
 })
 
 /*Get /project/edit */
-router.get('/edit/:_id', (req, res, next) => {
+router.get('/edit/:_id', isLoggedIn, (req, res, next) => {
     Project.findById(req.params._id, (err, project) => {
         if (err) {
             console.log(err)
@@ -105,7 +116,7 @@ router.get('/edit/:_id', (req, res, next) => {
 })
 
 //POST /projects/edit send
-router.post('/edit/:_id', (req, res, next) => {
+router.post('/edit/:_id', isLoggedIn, (req, res, next) => {
     Project.findOneAndUpdate({ _id: req.params._id }, {
         projectName: req.body.projectName,
         ProjDesc: req.body.ProjDesc,

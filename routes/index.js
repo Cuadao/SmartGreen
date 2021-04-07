@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser'); //created to template
+
 
 /*User model & model for auth*/
 const User = require('../models/user')
 const passport = require('passport')
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -43,6 +46,7 @@ router.post('/register', (req, res, next) => {
 })
 
 /*GET LOGIN*/
+
 router.get('/login', (req, res, next) => {
   //check for login error and display
   let messages = req.session.messages || [];
@@ -53,12 +57,15 @@ router.get('/login', (req, res, next) => {
   })
 })
 
-/*POST LOGIN*/ //Autenticate
+
+
+/*POST LOGIN*/
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/projects',
   failureRedirect: '/login',
   failureMessage: 'Invalid Login',
 }))
+
 
 /*GET LOGOUT*/
 router.get('/logout', (req, res, next) => {

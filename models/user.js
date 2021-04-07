@@ -7,7 +7,11 @@ const plm = require('passport-local-mongoose')
 //Create Schema
 var userSchema = new mongoose.Schema( {
     username: String,
-    password: String
+    password: String,
+    role: {
+        type: String,
+        default: 'user'
+    }
 })
 
 //special auth model

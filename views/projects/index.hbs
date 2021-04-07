@@ -1,3 +1,4 @@
+<div class="projecttable">
 <h1>{{title}}</h1>
 {{#if user}}
     <a href="/projects/add">Add new project</a>
@@ -17,7 +18,7 @@
     {{#each projects}}
         <tr>
             <td>
-                {{#if user}}
+                {{#if ../user}}
                 <a href="/projects/edit/{{this._id}}">
                 {{this.projectName}}
                 </a>
@@ -42,3 +43,4 @@
     {{/each}}
     </thead>
 </table>
+</div>
