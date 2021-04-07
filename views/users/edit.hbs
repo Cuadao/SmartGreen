@@ -1,0 +1,17 @@
+<h1>Edit User Role</h1>
+
+<form method="post">
+    <fieldset>
+        <label for="username" class="col-2">User Name:</label>
+        <input name="username" id="username" required value="{{users.username}}">
+    </fieldset>
+    <fieldset>
+        <label for="role" class="col-2">Roles:</label>
+        <select name="role" id="role">
+            {{createOption 'admin  ' users.role}}
+            {{createOption 'sponsor' users.role}}
+            {{createOption 'user' users.role}}
+        </select>
+    </fieldset>
+    <button class="offset-3 btn btn-primary">Save</button>
+</form>

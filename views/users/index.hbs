@@ -3,10 +3,29 @@
     <thead>
     <th>User Name</th>
     <th>Role</th>
+    {{#if user}}
+        <th>Delete</th>
+    {{/if}}
     {{#each users}}
         <tr>
-            <td>{{this.username}}</td>
+            <td>
+                {{#if ../user}}
+                    <a href="/users/edit/{{this._id}}">
+                        {{this.username}}
+                    </a>
+                {{else}}
+                    {{this.username}}
+                {{/if}}
+            </td>
             <td>{{this.role}}</td>
+            {{#if ../user}}
+                <td>
+                    <a href="/users/delete/{{this._id}}" class="btn btn-danger"
+                       > <!--onclick="return areYouSure();"-->
+                        Delete
+                    </a>
+                </td>
+            {{/if}}
         </tr>
     {{/each}}
     </thead>

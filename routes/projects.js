@@ -97,7 +97,7 @@ router.get('/edit/:_id', isLoggedIn, (req, res, next) => {
             console.log(err)
         }
         else {
-            //get courses dropdown
+            //get category dropdown
             Category.find((err, categories) => {
                 if (err) {
                     console.log(err)

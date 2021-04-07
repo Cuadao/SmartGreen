@@ -5,17 +5,13 @@ const mongoose = require('mongoose')
 const plm = require('passport-local-mongoose')
 
 //Create Schema
-const userSchema = new mongoose.Schema( {
-    userName: String,
-    password: String,
-    role: {
-        type: String,
-        default: 'user'
-    }
+const roleSchema = new mongoose.Schema( {
+    roleName: String,
+    description: String
 })
 
 //special auth model
-userSchema.plugin((plm))
+roleSchema.plugin((plm))
 
 //export the schema  visible to controller or routes
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('Role', roleSchema)
